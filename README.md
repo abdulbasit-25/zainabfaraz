@@ -49,8 +49,7 @@ Clone the repository and install the dependencies:
 ```bash
 git clone <repository-url>
 cd <project-folder>
-npm install
-npm run dev
+Open With LIve Server
 ```
 
 Then open the local development URL shown in your terminal.
