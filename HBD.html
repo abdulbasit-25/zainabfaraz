@@ -597,6 +597,93 @@
         gap: 8px;
       }
 
+      /* count on me */
+      .count-on-section {
+        padding: 5rem 1.5rem 4rem;
+        display: flex;
+        justify-content: center;
+      }
+      .count-on-card {
+        max-width: 640px;
+        width: 100%;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: clamp(2rem, 5vw, 4rem);
+        position: relative;
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.5) inset,
+          0 40px 80px -40px rgba(36, 26, 20, 0.25),
+          0 12px 32px -18px rgba(184, 99, 62, 0.18);
+      }
+      .count-on-icon {
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(184, 99, 62, 0.12);
+        color: var(--accent);
+        border-radius: 50%;
+        margin-bottom: 2rem;
+        transition: transform 0.4s ease;
+      }
+      .count-on-card:hover .count-on-icon {
+        transform: scale(1.1);
+        background: rgba(184, 99, 62, 0.18);
+      }
+      .count-on-eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .count-on-eyebrow::before {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: var(--accent);
+      }
+      .count-on-title {
+        font-family: "Fraunces", serif;
+        font-size: clamp(28px, 5vw, 42px);
+        font-weight: 300;
+        line-height: 1.1;
+        margin: 0 0 1.8rem;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 60;
+      }
+      .count-on-text {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #3a2e25;
+        margin: 0 0 1.2rem;
+        font-weight: 350;
+      }
+      .count-on-line {
+        height: 1px;
+        background: var(--line);
+        margin: 2rem 0;
+      }
+      .count-on-note {
+        font-size: 14px;
+        line-height: 1.7;
+        color: #3a2e25;
+        font-style: italic;
+        font-weight: 350;
+      }
+      .count-on-note strong {
+        font-family: "Fraunces", serif;
+        font-style: normal;
+        font-weight: 500;
+        color: var(--accent);
+        font-size: 15px;
+      }
+
       /* footer */
       footer {
         padding: 3rem 1.5rem 4rem;
