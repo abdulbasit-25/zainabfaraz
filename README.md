@@ -24,11 +24,9 @@ The website is designed to create a fun and memorable birthday experience, featu
 
 ## 🛠️ Built With
 
-- **React**
-- **JavaScript / TypeScript**
 - **CSS**
-- **Framer Motion**
-- **Lucide Icons**
+- **Html**
+- **Some JS**
 
 ## 🎁 A Small Message
 
