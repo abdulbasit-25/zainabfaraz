@@ -1,0 +1,1272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>For Zainab — Aug 25</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Outfit:wght@200..600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <style>
+      :root {
+        --bg: #f4ebe0;
+        --bg-deep: #ebe0d0;
+        --paper: #faf4e9;
+        --fg: #241a14;
+        --accent: #b8633e;
+        --accent-2: #c9a961;
+        --muted: #8a7568;
+        --line: rgba(36, 26, 20, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(
+            ellipse 80% 60% at 18% 0%,
+            rgba(201, 169, 97, 0.18),
+            transparent 55%
+          ),
+          radial-gradient(
+            ellipse 60% 50% at 90% 100%,
+            rgba(184, 99, 62, 0.14),
+            transparent 55%
+          ),
+          var(--bg);
+        color: var(--fg);
+        font-family: "Outfit", sans-serif;
+        overflow-x: hidden;
+        font-weight: 350;
+      }
+
+      .font-display {
+        font-family: "Fraunces", serif;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 50;
+      }
+
+      /* particles + grain */
+      #particles {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .grain {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        opacity: 0.06;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        mix-blend-mode: multiply;
+      }
+
+      main {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* custom cursor */
+      .cursor-dot,
+      .cursor-ring {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+      }
+      .cursor-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--accent);
+        border-radius: 50%;
+        mix-blend-mode: multiply;
+        transition:
+          width 0.25s,
+          height 0.25s;
+      }
+      .cursor-ring {
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--accent);
+        border-radius: 50%;
+        transition:
+          transform 0.25s ease,
+          width 0.3s,
+          height 0.3s,
+          opacity 0.3s;
+        opacity: 0.55;
+      }
+
+      /* hero */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 2rem;
+      }
+      .hero-frame {
+        position: absolute;
+        inset: 1.8rem;
+        border: 1px solid var(--line);
+        pointer-events: none;
+      }
+      .hero-corner {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border: 1px solid var(--accent);
+      }
+      .hero-corner.tl {
+        top: 1.2rem;
+        left: 1.2rem;
+        border-right: none;
+        border-bottom: none;
+      }
+      .hero-corner.tr {
+        top: 1.2rem;
+        right: 1.2rem;
+        border-left: none;
+        border-bottom: none;
+      }
+      .hero-corner.bl {
+        bottom: 1.2rem;
+        left: 1.2rem;
+        border-right: none;
+        border-top: none;
+      }
+      .hero-corner.br {
+        bottom: 1.2rem;
+        right: 1.2rem;
+        border-left: none;
+        border-top: none;
+      }
+
+      .hero-meta,
+      .hero-meta-r {
+        position: absolute;
+        top: 3rem;
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .hero-meta {
+        left: 3rem;
+      }
+      .hero-meta-r {
+        right: 3rem;
+      }
+
+      .hero-bottom {
+        position: absolute;
+        bottom: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: var(--muted);
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+      @keyframes bob {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(6px);
+        }
+      }
+      .scroll-cue {
+        animation: bob 2.6s ease-in-out infinite;
+      }
+
+      .name-display {
+        font-family: "Fraunces", serif;
+        font-weight: 300;
+        font-size: clamp(60px, 13vw, 190px);
+        line-height: 0.92;
+        letter-spacing: -0.04em;
+        text-align: center;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 80,
+          "WONK" 1;
+        transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .name-display .italic-em {
+        font-style: italic;
+        font-weight: 400;
+        color: var(--accent);
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 100;
+      }
+
+      .age-row {
+        display: flex;
+        gap: clamp(1.2rem, 4vw, 3rem);
+        margin-top: 3rem;
+        align-items: baseline;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .age-block {
+        text-align: center;
+        min-width: 64px;
+      }
+      .age-num {
+        font-family: "Fraunces", serif;
+        font-size: clamp(34px, 5.5vw, 64px);
+        font-weight: 300;
+        line-height: 1;
+        font-variation-settings: "opsz" 144;
+      }
+      .age-label {
+        font-size: 10px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 0.5rem;
+      }
+      .age-sep {
+        font-family: "Fraunces", serif;
+        font-size: clamp(34px, 5.5vw, 64px);
+        color: var(--line);
+        line-height: 1;
+        font-weight: 200;
+      }
+
+      /* letter */
+      .letter-section {
+        padding: 5rem 1.5rem 7rem;
+        display: flex;
+        justify-content: center;
+      }
+      .letter-card {
+        max-width: 740px;
+        width: 100%;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: clamp(2rem, 5vw, 4.5rem);
+        position: relative;
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.5) inset,
+          0 40px 80px -40px rgba(36, 26, 20, 0.25),
+          0 12px 32px -18px rgba(184, 99, 62, 0.18);
+        transform: rotate(-0.5deg);
+      }
+      .letter-card::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%) rotate(2deg);
+        width: 120px;
+        height: 24px;
+        background: rgba(201, 169, 97, 0.4);
+        backdrop-filter: blur(2px);
+        border-radius: 1px;
+        box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.1);
+      }
+      .letter-stamp {
+        position: absolute;
+        top: 28px;
+        right: 28px;
+        width: 70px;
+        height: 86px;
+        border: 1.5px dashed var(--accent);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        font-size: 8px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        gap: 5px;
+        padding: 6px;
+        transform: rotate(5deg);
+        background: rgba(250, 244, 233, 0.6);
+      }
+      .letter-stamp .num {
+        font-family: "Fraunces", serif;
+        font-size: 22px;
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: 1;
+      }
+
+      .letter-eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .letter-eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 1px;
+        background: var(--accent);
+      }
+      .letter-greeting {
+        font-family: "Fraunces", serif;
+        font-size: clamp(32px, 5.5vw, 52px);
+        font-weight: 300;
+        font-style: italic;
+        line-height: 1.05;
+        margin: 0 0 2rem;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 100;
+      }
+      .letter-body p {
+        font-size: 17px;
+        line-height: 1.85;
+        color: #3a2e25;
+        margin: 0 0 1.3rem;
+        font-weight: 350;
+      }
+      .letter-body .em {
+        font-family: "Fraunces", serif;
+        font-style: italic;
+        color: var(--accent);
+        font-weight: 500;
+      }
+      .letter-sign {
+        margin-top: 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--line);
+      }
+      .sign-name {
+        font-family: "Fraunces", serif;
+        font-style: italic;
+        font-size: 30px;
+        color: var(--accent);
+        font-weight: 400;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 100;
+      }
+      .sign-meta {
+        font-size: 10px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-align: right;
+        line-height: 1.8;
+      }
+
+      /* reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 1s cubic-bezier(0.2, 0.7, 0.2, 1),
+          transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal.delay-1 {
+        transition-delay: 0.12s;
+      }
+      .reveal.delay-2 {
+        transition-delay: 0.24s;
+      }
+      .reveal.delay-3 {
+        transition-delay: 0.36s;
+      }
+
+      /* moments */
+      .moments {
+        padding: 5rem 1.5rem 4rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 3rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--line);
+      }
+      .section-title {
+        font-family: "Fraunces", serif;
+        font-size: clamp(34px, 5vw, 56px);
+        font-weight: 300;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        margin: 0;
+        font-variation-settings:
+          "opsz" 144,
+          "SOFT" 50;
+      }
+      .section-title .em {
+        font-style: italic;
+        color: var(--accent);
+        font-weight: 400;
+      }
+      .section-sub {
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .moments-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.25rem;
+      }
+      .moment-card {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 2rem 1.75rem;
+        position: relative;
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease,
+          border-color 0.4s;
+        min-height: 240px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+      }
+      .moment-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          transparent 60%,
+          rgba(184, 99, 62, 0.06)
+        );
+        opacity: 0;
+        transition: opacity 0.4s;
+        pointer-events: none;
+      }
+      .moment-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 24px 48px -24px rgba(36, 26, 20, 0.2);
+        border-color: var(--accent);
+      }
+      .moment-card:hover::after {
+        opacity: 1;
+      }
+      .moment-card:hover .moment-icon {
+        transform: rotate(-8deg) scale(1.08);
+        background: rgba(184, 99, 62, 0.18);
+      }
+
+      .moment-num {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        font-family: "Fraunces", serif;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.15em;
+      }
+      .moment-icon {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(184, 99, 62, 0.1);
+        color: var(--accent);
+        border-radius: 50%;
+        margin-bottom: 1.25rem;
+        transition:
+          transform 0.4s ease,
+          background 0.4s;
+      }
+      .moment-title {
+        font-family: "Fraunces", serif;
+        font-size: 22px;
+        font-weight: 400;
+        margin: 0 0 0.6rem;
+        line-height: 1.2;
+        font-variation-settings: "opsz" 60;
+      }
+      .moment-text {
+        font-size: 13.5px;
+        line-height: 1.65;
+        color: var(--muted);
+      }
+
+      /* celebrate */
+      .celebrate-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 3rem 1.5rem 6rem;
+        text-align: center;
+      }
+      .celebrate-btn {
+        position: relative;
+        background: var(--fg);
+        color: var(--bg);
+        border: none;
+        padding: 1.15rem 2.5rem;
+        font-family: "Outfit", sans-serif;
+        font-size: 13px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        border-radius: 100px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        font-weight: 400;
+      }
+      .celebrate-btn:hover {
+        transform: scale(1.04);
+      }
+      .celebrate-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--accent);
+        transform: translateY(101%);
+        transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .celebrate-btn:hover::before {
+        transform: translateY(0);
+      }
+      .celebrate-btn > * {
+        position: relative;
+        z-index: 1;
+      }
+      .celebrate-btn i {
+        transition: transform 0.4s;
+      }
+      .celebrate-btn:hover i {
+        transform: rotate(-12deg);
+      }
+
+      .celebrate-hint {
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* footer */
+      footer {
+        padding: 3rem 1.5rem 4rem;
+        border-top: 1px solid var(--line);
+        text-align: center;
+        color: var(--muted);
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+      footer .signature-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 1rem;
+      }
+
+      /* confetti */
+      #confetti {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        pointer-events: none;
+      }
+
+      /* responsive */
+      @media (max-width: 720px) {
+        .hero-meta,
+        .hero-meta-r {
+          font-size: 10px;
+          top: 1.5rem;
+        }
+        .hero-meta {
+          left: 1.5rem;
+        }
+        .hero-meta-r {
+          right: 1.5rem;
+        }
+        .hero-frame {
+          inset: 1rem;
+        }
+        .letter-stamp {
+          top: 20px;
+          right: 20px;
+          width: 56px;
+          height: 70px;
+        }
+        .letter-stamp .num {
+          font-size: 18px;
+        }
+      }
+      @media (hover: none), (pointer: coarse) {
+        body {
+          cursor: auto;
+        }
+        .cursor-dot,
+        .cursor-ring {
+          display: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+        .name-display {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="particles"></canvas>
+    <div class="grain"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-frame"></div>
+        <span class="hero-corner tl"></span>
+        <span class="hero-corner tr"></span>
+        <span class="hero-corner bl"></span>
+        <span class="hero-corner br"></span>
+
+        <div class="hero-meta">
+          <i data-lucide="sparkle" style="width: 13px; height: 13px"></i>
+          Volume XXII — Issued Annually
+        </div>
+        <div class="hero-meta-r">
+          <span id="liveDate">Aug · 25</span>
+          <i data-lucide="moon" style="width: 13px; height: 13px"></i>
+        </div>
+
+        <div style="text-align: center">
+          <div class="reveal" style="margin-bottom: 1.5rem">
+            <span
+              style="
+                font-size: 11px;
+                letter-spacing: 0.4em;
+                text-transform: uppercase;
+                color: var(--muted);
+              "
+              >A card for —</span
+            >
+          </div>
+
+          <h1 class="name-display reveal delay-1" id="heroName">
+            Zainab<br /><span class="italic-em">Faraz</span>
+          </h1>
+
+          <div class="age-row reveal delay-2">
+            <div class="age-block">
+              <div class="age-num" id="years">0</div>
+              <div class="age-label">Years</div>
+            </div>
+            <div class="age-sep">·</div>
+            <div class="age-block">
+              <div class="age-num" id="months">0</div>
+              <div class="age-label">Months</div>
+            </div>
+            <div class="age-sep">·</div>
+            <div class="age-block">
+              <div class="age-num" id="days">0</div>
+              <div class="age-label">Days</div>
+            </div>
+          </div>
+
+          <div
+            class="reveal delay-3"
+            style="
+              margin-top: 3rem;
+              display: flex;
+              justify-content: center;
+              gap: 2rem;
+              flex-wrap: wrap;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 11px;
+                letter-spacing: 0.25em;
+                text-transform: uppercase;
+                color: var(--muted);
+              "
+            >
+              <i
+                data-lucide="cake"
+                style="width: 14px; height: 14px; color: var(--accent)"
+              ></i>
+              Born Aug 25, 2003
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 11px;
+                letter-spacing: 0.25em;
+                text-transform: uppercase;
+                color: var(--muted);
+              "
+            >
+              <i
+                data-lucide="map-pin"
+                style="width: 14px; height: 14px; color: var(--accent)"
+              ></i>
+              Earth · Still orbiting
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-bottom">
+          <div
+            class="scroll-cue"
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 10px;
+            "
+          >
+            <span>Scroll for the letter</span>
+            <i data-lucide="chevron-down" style="width: 14px; height: 14px"></i>
+          </div>
+        </div>
+      </section>
+
+      <!-- LETTER -->
+      <section class="letter-section">
+        <article class="letter-card reveal">
+          <div class="letter-stamp">
+            <i data-lucide="mail" style="width: 14px; height: 14px"></i>
+            <span class="num">22</span>
+            <span>Aug · 25</span>
+          </div>
+
+          <div class="letter-eyebrow">A letter, unsealed</div>
+          <h2 class="letter-greeting">Hey Zainab —</h2>
+
+          <div class="letter-body">
+            <p>
+              No formalities, you know the drill. No grand declarations, no
+              rehearsed birthday speeches. Just this: another August 25th,
+              another orbit done, and somehow the world still feels a little
+              more interesting because you're in it.
+            </p>
+
+            <p>
+              Twenty-two years of you being unapologetically yourself — stubborn
+              in the right places, soft in the better ones, and impossibly
+              patient with people who don't always deserve it. You walk into
+              rooms and quietly shift the air. You don't make a fuss about it.
+              But I notice. <span class="em">We</span> notice.
+            </p>
+
+            <p>
+              Here's to the late-night conversations that start about nothing
+              and end somewhere profound. To the running jokes that should've
+              died Ages ago but refuse to. To the way you pretend you don't care
+              while caring, loudly, about everything that actually matters.
+            </p>
+
+            <p>
+              So — no formalities, no overtures. Just a small, honest: thank you
+              for being exactly the way you are. May this year be kinder than
+              the last, louder in the right moments, and quiet when you need it
+              to be. May you keep surprising people. May you keep surprising
+              yourself.
+            </p>
+
+            <p>
+              Happy birthday, ZF. Make a wish. Or don't — you were never one for
+              instructions anyway.
+            </p>
+
+            <p>
+              You are Someone i know i can alway rely on and count on. and i am
+              sure you know that you can also do that with me. I am always here
+              for you. I will always be here for you
+            </p>
+          </div>
+
+          <div class="letter-sign">
+            <div class="sign-name">Always, me.</div>
+            <div class="sign-meta">
+              Filed under: appreciation<br />
+              Status: ongoing<br />
+              Ref: ZF · 0825
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- MOMENTS -->
+      <section class="moments">
+        <div class="section-head reveal">
+          <h2 class="section-title">
+            A few <span class="em">things</span>, for the record.
+          </h2>
+          <div class="section-sub">
+            <i data-lucide="bookmark" style="width: 13px; height: 13px"></i>
+            Postscript · 04 notes
+          </div>
+        </div>
+
+        <div class="moments-grid">
+          <div class="moment-card reveal">
+            <div class="moment-num">01</div>
+            <div>
+              <div class="moment-icon"><i data-lucide="coffee"></i></div>
+              <h3 class="moment-title">No formalities, ever.</h3>
+            </div>
+            <p class="moment-text">
+              The shorthand we agreed on. Skip the pleasantries, get to the
+              point, leave room for the actual conversation. That's the whole
+              vibe, and you nailed it before it had a name.
+            </p>
+          </div>
+
+          <div class="moment-card reveal delay-1">
+            <div class="moment-num">02</div>
+            <div>
+              <div class="moment-icon"><i data-lucide="moon-star"></i></div>
+              <h3 class="moment-title">Night-shift talks.</h3>
+            </div>
+            <p class="moment-text">
+              The 1 AM kind, where everything makes sense and nothing makes
+              sense at the same time. Those count. Those are the real ones.
+              Filed permanently.
+            </p>
+          </div>
+
+          <div class="moment-card reveal delay-2">
+            <div class="moment-num">03</div>
+            <div>
+              <div class="moment-icon"><i data-lucide="music-2"></i></div>
+              <h3 class="moment-title">The playlist, obviously.</h3>
+            </div>
+            <p class="moment-text">
+              Songs that hit different because of who you were listening with.
+              Played quietly, replayed without permission, never quite the same
+              alone.
+            </p>
+          </div>
+
+          <div class="moment-card reveal delay-3">
+            <div class="moment-num">04</div>
+            <div>
+              <div class="moment-icon"><i data-lucide="compass"></i></div>
+              <h3 class="moment-title">What's next.</h3>
+            </div>
+            <p class="moment-text">
+              Whatever it is — the plan, the detour, the version of you a year
+              from now. I'm rooting for it. Quietly, but firmly. No formalities
+              required.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CELEBRATE -->
+      <div class="celebrate-wrap reveal">
+        <button class="celebrate-btn" id="celebrate">
+          <i data-lucide="party-popper"></i>
+          <span>Press for a little chaos</span>
+        </button>
+        <div class="celebrate-hint">
+          <i data-lucide="hand" style="width: 13px; height: 13px"></i>
+          Click · entirely optional, just like everything else here
+        </div>
+      </div>
+
+      <footer>
+        <div class="signature-row">
+          <i
+            data-lucide="heart"
+            style="width: 13px; height: 13px; color: var(--accent)"
+          ></i>
+          <span>Made for ZF · Aug 25</span>
+          <i
+            data-lucide="heart"
+            style="width: 13px; height: 13px; color: var(--accent)"
+          ></i>
+        </div>
+        <div>Twenty-two orbits and counting.</div>
+      </footer>
+    </main>
+
+    <canvas id="confetti"></canvas>
+
+    <script>
+      /* ---------- Lucide ---------- */
+      lucide.createIcons();
+
+      /* ---------- Live date ---------- */
+      const liveDate = document.getElementById("liveDate");
+      const updateDate = () => {
+        const now = new Date();
+        const opts = { month: "short", day: "2-digit" };
+        liveDate.textContent = now
+          .toLocaleDateString("en-US", opts)
+          .toUpperCase();
+      };
+      updateDate();
+
+      /* ---------- Age calculation ---------- */
+      const birth = new Date(2003, 7, 25); // Aug 25, 2003
+      const now = new Date();
+
+      let years = now.getFullYear() - birth.getFullYear();
+      const monthDiff = now.getMonth() - birth.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birth.getDate()))
+        years--;
+
+      let totalMonths =
+        (now.getFullYear() - birth.getFullYear()) * 12 + monthDiff;
+      if (now.getDate() < birth.getDate()) totalMonths--;
+
+      const totalDays = Math.floor((now - birth) / (1000 * 60 * 60 * 24));
+
+      /* ---------- Counter animation ---------- */
+      function animateCounter(el, target, duration = 1800) {
+        const start = 0;
+        const startTime = performance.now();
+        function step(t) {
+          const p = Math.min((t - startTime) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 4);
+          const val = Math.floor(start + (target - start) * eased);
+          el.textContent = val.toLocaleString();
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+
+      setTimeout(() => {
+        animateCounter(document.getElementById("years"), Math.max(0, years));
+        animateCounter(
+          document.getElementById("months"),
+          Math.max(0, totalMonths),
+        );
+        animateCounter(document.getElementById("days"), Math.max(0, totalDays));
+      }, 700);
+
+      /* ---------- Reveal on scroll ---------- */
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document.querySelectorAll(".reveal").forEach((r) => io.observe(r));
+
+      /* ---------- Custom cursor ---------- */
+      const dot = document.querySelector(".cursor-dot");
+      const ring = document.querySelector(".cursor-ring");
+      let mx = innerWidth / 2,
+        my = innerHeight / 2,
+        rx = mx,
+        ry = my;
+
+      const isTouch = matchMedia("(hover: none), (pointer: coarse)").matches;
+      if (!isTouch) {
+        window.addEventListener("mousemove", (e) => {
+          mx = e.clientX;
+          my = e.clientY;
+          dot.style.left = mx + "px";
+          dot.style.top = my + "px";
+        });
+        (function tick() {
+          rx += (mx - rx) * 0.18;
+          ry += (my - ry) * 0.18;
+          ring.style.left = rx + "px";
+          ring.style.top = ry + "px";
+          requestAnimationFrame(tick);
+        })();
+
+        document
+          .querySelectorAll("a, button, .moment-card, .letter-card")
+          .forEach((el) => {
+            el.addEventListener("mouseenter", () => {
+              ring.style.width = "64px";
+              ring.style.height = "64px";
+              ring.style.opacity = "1";
+            });
+            el.addEventListener("mouseleave", () => {
+              ring.style.width = "36px";
+              ring.style.height = "36px";
+              ring.style.opacity = ".55";
+            });
+          });
+      } else {
+        dot.style.display = "none";
+        ring.style.display = "none";
+      }
+
+      /* ---------- Hero parallax ---------- */
+      const heroName = document.getElementById("heroName");
+      if (!isTouch) {
+        window.addEventListener("mousemove", (e) => {
+          const dx = (e.clientX / innerWidth - 0.5) * 16;
+          const dy = (e.clientY / innerHeight - 0.5) * 8;
+          heroName.style.transform = `translate(${dx}px, ${dy}px)`;
+        });
+      }
+
+      /* ---------- Floating particles ---------- */
+      const pCanvas = document.getElementById("particles");
+      const pCtx = pCanvas.getContext("2d");
+      let pw,
+        ph,
+        motes = [];
+      function resizeP() {
+        pw = pCanvas.width = innerWidth;
+        ph = pCanvas.height = innerHeight;
+      }
+      resizeP();
+      window.addEventListener("resize", resizeP);
+
+      class Mote {
+        constructor() {
+          this.reset(true);
+        }
+        reset(initial) {
+          this.x = Math.random() * pw;
+          this.y = initial ? Math.random() * ph : ph + 10;
+          this.r = Math.max(0.4, Math.random() * 2.4);
+          this.vy = -(Math.random() * 0.28 + 0.08);
+          this.vx = (Math.random() - 0.5) * 0.14;
+          this.alpha = Math.random() * 0.45 + 0.15;
+          this.color =
+            Math.random() > 0.55 ? "rgba(184,99,62,1)" : "rgba(201,169,97,1)";
+          this.flicker = Math.random() * 0.02 + 0.005;
+          this.flickerDir = Math.random() > 0.5 ? 1 : -1;
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          this.alpha += this.flicker * this.flickerDir;
+          if (this.alpha > 0.6) this.flickerDir = -1;
+          if (this.alpha < 0.1) this.flickerDir = 1;
+          if (this.y < -10 || this.x < -10 || this.x > pw + 10)
+            this.reset(false);
+        }
+        draw() {
+          pCtx.beginPath();
+          pCtx.fillStyle = this.color;
+          pCtx.globalAlpha = this.alpha;
+          pCtx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+          pCtx.fill();
+        }
+      }
+      const moteCount = innerWidth < 720 ? 40 : 80;
+      for (let i = 0; i < moteCount; i++) motes.push(new Mote());
+
+      let particlesVisible = true;
+      function loopP() {
+        if (!particlesVisible) return;
+        pCtx.clearRect(0, 0, pw, ph);
+        motes.forEach((m) => {
+          m.update();
+          m.draw();
+        });
+        pCtx.globalAlpha = 1;
+        requestAnimationFrame(loopP);
+      }
+      loopP();
+
+      // pause particles when tab hidden
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          particlesVisible = false;
+        } else if (!particlesVisible) {
+          particlesVisible = true;
+          loopP();
+        }
+      });
+
+      /* ---------- Confetti ---------- */
+      const cCanvas = document.getElementById("confetti");
+      const cCtx = cCanvas.getContext("2d");
+      let cw,
+        ch,
+        pieces = [];
+      function resizeC() {
+        cw = cCanvas.width = innerWidth;
+        ch = cCanvas.height = innerHeight;
+      }
+      resizeC();
+      window.addEventListener("resize", resizeC);
+
+      const palette = [
+        "#b8633e",
+        "#c9a961",
+        "#241a14",
+        "#8a7568",
+        "#e8c89a",
+        "#d97757",
+      ];
+
+      class Piece {
+        constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.size = Math.max(4, Math.random() * 8 + 4);
+          this.vx = (Math.random() - 0.5) * 14;
+          this.vy = -(Math.random() * 9 + 7);
+          this.gravity = 0.28;
+          this.rotation = Math.random() * Math.PI * 2;
+          this.vr = (Math.random() - 0.5) * 0.32;
+          this.color = palette[Math.floor(Math.random() * palette.length)];
+          this.shape = Math.random() > 0.45 ? "rect" : "circle";
+          this.life = 1;
+          this.fadeStart = ch * 0.6 + Math.random() * ch * 0.3;
+        }
+        update() {
+          this.vy += this.gravity;
+          this.x += this.vx;
+          this.y += this.vy;
+          this.vx *= 0.99;
+          this.rotation += this.vr;
+          if (this.y > this.fadeStart)
+            this.life = Math.max(0, this.life - 0.012);
+          if (this.y > ch + 50) this.life = 0;
+        }
+        draw() {
+          cCtx.save();
+          cCtx.translate(this.x, this.y);
+          cCtx.rotate(this.rotation);
+          cCtx.fillStyle = this.color;
+          cCtx.globalAlpha = this.life;
+          if (this.shape === "rect") {
+            cCtx.fillRect(
+              -this.size / 2,
+              -this.size / 4,
+              this.size,
+              this.size / 2,
+            );
+          } else {
+            cCtx.beginPath();
+            cCtx.arc(0, 0, Math.max(1, this.size / 2), 0, Math.PI * 2);
+            cCtx.fill();
+          }
+          cCtx.restore();
+        }
+      }
+
+      let confettiAnimating = false;
+      function loopC() {
+        cCtx.clearRect(0, 0, cw, ch);
+        pieces = pieces.filter((p) => p.life > 0);
+        pieces.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        if (pieces.length > 0) {
+          confettiAnimating = true;
+          requestAnimationFrame(loopC);
+        } else {
+          confettiAnimating = false;
+          cCtx.clearRect(0, 0, cw, ch);
+        }
+      }
+
+      const celebrateBtn = document.getElementById("celebrate");
+      let lastClick = 0;
+      celebrateBtn.addEventListener("click", (e) => {
+        const now = Date.now();
+        if (now - lastClick < 200) return;
+        lastClick = now;
+
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+
+        // burst from button + a couple of secondary bursts
+        for (let i = 0; i < 110; i++) pieces.push(new Piece(x, y));
+        setTimeout(() => {
+          for (let i = 0; i < 60; i++) {
+            pieces.push(new Piece(x - 120 + Math.random() * 60, y));
+            pieces.push(new Piece(x + 120 - Math.random() * 60, y));
+          }
+        }, 140);
+
+        if (!confettiAnimating) loopC();
+      });
+
+      /* ---------- Letter card subtle tilt ---------- */
+      const letterCard = document.querySelector(".letter-card");
+      if (!isTouch) {
+        letterCard.addEventListener("mousemove", (e) => {
+          const rect = letterCard.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          letterCard.style.transform = `rotate(-0.5deg) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+        });
+        letterCard.addEventListener("mouseleave", () => {
+          letterCard.style.transform = "rotate(-0.5deg)";
+        });
+      }
+    </script>
+  </body>
+</html>
