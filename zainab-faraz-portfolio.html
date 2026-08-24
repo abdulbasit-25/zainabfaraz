@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zainab Faraz — Software Engineer</title>
+<meta name="description" content="Final-year Software Engineering student at Iqra University. Web apps and applied AI/ML projects, built to actually ship.">
+<link rel="canonical" href="https://zainab-faraz.vercel.app">
+<meta property="og:title" content="Zainab Faraz — Software Engineer">
+<meta property="og:description" content="Final-year Software Engineering student at Iqra University. Web apps and applied AI/ML projects, built to actually ship.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#14171F;
+  --ink-soft:#1B202B;
+  --ink-card:#212734;
+  --paper:#EDEEF2;
+  --paper-dim:#E2E4EA;
+  --text:#181B23;
+  --dim:#5B6472;
+  --gold:#C98A2E;
+  --gold-soft:#E3B565;
+  --teal:#2F6E5F;
+  --teal-soft:#5FAE9A;
+  --coral:#BD5240;
+  --blue:#4C6FA8;
+  --line:rgba(20,23,31,0.13);
+  --line-dark:rgba(237,238,242,0.13);
+
+  --serif:"Instrument Serif", Georgia, serif;
+  --sans:"Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono:"JetBrains Mono", "SF Mono", monospace;
+
+  --maxw:1180px;
+  --gutter:clamp(22px,5vw,64px);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  background:var(--paper);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{ background:var(--gold); color:var(--ink); }
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+button, input, textarea{ font-family:inherit; }
+
+.wrap{ max-width:var(--maxw); margin:0 auto; padding-left:var(--gutter); padding-right:var(--gutter); }
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.06em;
+  color:var(--gold);
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:18px;
+}
+.eyebrow::before{ content:"//"; color:var(--dim); opacity:0.6; }
+
+h1,h2,h3{ font-family:var(--serif); font-weight:400; letter-spacing:-0.01em; line-height:1.06; }
+
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+  outline:2px solid var(--gold); outline-offset:3px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+}
+
+/* window chrome dots — reused across terminal/editor cards */
+.dots{ display:flex; gap:6px; }
+.dots span{ width:9px; height:9px; border-radius:50%; display:block; }
+.dots span:nth-child(1){ background:var(--coral); }
+.dots span:nth-child(2){ background:var(--gold); }
+.dots span:nth-child(3){ background:var(--teal); }
+
+/* ============ NAV ============ */
+header.site-nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(237,238,242,0.86);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:var(--maxw); margin:0 auto; padding:0 var(--gutter);
+  height:68px; display:flex; align-items:center; justify-content:space-between;
+}
+.nav-brand{ display:flex; align-items:center; gap:12px; }
+.nav-mark{ font-family:var(--serif); font-size:20px; }
+.nav-mark em{ font-style:italic; color:var(--gold); }
+.nav-links{ display:flex; gap:28px; list-style:none; }
+.nav-links a{
+  font-family:var(--mono); font-size:13px; color:var(--dim);
+  position:relative; padding-bottom:3px; transition:color 0.2s ease;
+}
+.nav-links a::after{
+  content:""; position:absolute; left:0; bottom:0; width:0; height:1px;
+  background:var(--gold); transition:width 0.25s ease;
+}
+.nav-links a:hover{ color:var(--text); }
+.nav-links a:hover::after{ width:100%; }
+.nav-cta{
+  font-family:var(--mono); font-size:13px; color:var(--paper);
+  background:var(--ink); padding:9px 16px; border-radius:3px;
+  transition:background 0.25s ease;
+}
+.nav-cta:hover{ background:var(--teal); }
+.nav-toggle{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px; }
+.nav-toggle span{ width:20px; height:1.5px; background:var(--ink); display:block; }
+.mobile-menu{ display:none; }
+
+/* ============ HERO ============ */
+.hero{
+  position:relative; min-height:100vh; display:flex; align-items:center;
+  padding-top:110px; padding-bottom:70px;
+  background: radial-gradient(ellipse 700px 460px at 88% 4%, rgba(201,138,46,0.09), transparent 62%), var(--paper);
+}
+.hero-grid{
+  display:grid; grid-template-columns:1.05fr 0.95fr; gap:clamp(36px,6vw,80px);
+  align-items:center; width:100%;
+}
+.hero-kicker{
+  font-family:var(--mono); font-size:12.5px; color:var(--teal);
+  letter-spacing:0.04em; margin-bottom:20px; display:flex; align-items:center; gap:10px;
+  opacity:0; animation:fadeUp 0.7s ease 0.1s forwards;
+}
+.hero-kicker .dot{ width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 0 3px rgba(47,110,95,0.18); }
+.hero h1{
+  font-size:clamp(38px,5.2vw,64px); color:var(--ink);
+  opacity:0; animation:fadeUp 0.8s ease 0.22s forwards;
+}
+.hero h1 em{ font-style:italic; color:var(--gold); }
+.hero-role{
+  font-size:clamp(15.5px,1.5vw,18px); color:var(--dim); margin-top:20px; max-width:520px;
+  opacity:0; animation:fadeUp 0.8s ease 0.34s forwards;
+}
+.hero-role strong{ color:var(--ink); font-weight:600; }
+.hero-actions{
+  display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;
+  opacity:0; animation:fadeUp 0.8s ease 0.46s forwards;
+}
+.btn{
+  font-family:var(--mono); font-size:13px; padding:13px 22px; border-radius:3px;
+  display:inline-flex; align-items:center; gap:9px; transition:all 0.25s ease; cursor:pointer; border:1px solid transparent;
+}
+.btn-primary{ background:var(--ink); color:var(--paper); }
+.btn-primary:hover{ background:var(--teal); transform:translateY(-2px); }
+.btn-ghost{ border-color:var(--ink); color:var(--ink); }
+.btn-ghost:hover{ background:var(--ink); color:var(--paper); }
+.hero-stats{
+  display:flex; gap:34px; margin-top:52px; padding-top:26px; border-top:1px solid var(--line);
+  opacity:0; animation:fadeUp 0.8s ease 0.56s forwards;
+}
+.stat-num{ font-family:var(--serif); font-size:29px; color:var(--ink); }
+.stat-num span{ color:var(--gold); }
+.stat-label{ font-family:var(--mono); font-size:11.5px; color:var(--dim); margin-top:5px; }
+
+/* ---- hero visual: terminal ---- */
+.hero-visual{ opacity:0; animation:fadeIn 0.9s ease 0.4s forwards; }
+.term{
+  background:var(--ink); border-radius:8px; overflow:hidden;
+  box-shadow:0 40px 70px -28px rgba(15,18,25,0.4);
+  border:1px solid rgba(255,255,255,0.06);
+}
+.term-head{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px; border-bottom:1px solid var(--line-dark);
+}
+.term-title{ font-family:var(--mono); font-size:11.5px; color:rgba(237,238,242,0.4); }
+.term-body{ padding:26px 22px 30px; font-family:var(--mono); font-size:14px; line-height:1.9; min-height:230px; }
+.term-line{ color:rgba(237,238,242,0.85); white-space:pre-wrap; }
+.term-prompt{ color:var(--teal-soft); }
+.term-out{ color:rgba(237,238,242,0.55); display:block; }
+.term-key{ color:var(--gold-soft); }
+.caret{
+  display:inline-block; width:8px; height:15px; background:var(--gold-soft);
+  margin-left:2px; vertical-align:middle; animation:blink 1s steps(1) infinite;
+}
+@keyframes blink{ 50%{ opacity:0; } }
+@keyframes fadeUp{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+@keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
+
+/* ============ SECTIONS ============ */
+section{ position:relative; }
+.section-pad{ padding:116px 0; }
+.section-head{ max-width:620px; margin-bottom:60px; }
+.section-head h2{ font-size:clamp(28px,3.4vw,42px); color:var(--ink); }
+.section-head p{ color:var(--dim); font-size:16px; margin-top:14px; max-width:520px; }
+.on-dark{ background:var(--ink); color:var(--paper); }
+.on-dark .eyebrow{ color:var(--gold-soft); }
+.on-dark .section-head h2{ color:var(--paper); }
+.on-dark .section-head p{ color:rgba(237,238,242,0.6); }
+.on-dim{ background:var(--paper-dim); }
+
+.reveal{ opacity:0; transform:translateY(26px); transition:opacity 0.7s ease, transform 0.7s ease; }
+.reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+/* ============ ABOUT ============ */
+.about-grid{ display:grid; grid-template-columns:0.95fr 1.05fr; gap:clamp(36px,6vw,76px); }
+.about-copy p{ font-size:16.5px; color:var(--text); margin-bottom:19px; max-width:540px; }
+.about-copy p:first-of-type{ font-family:var(--serif); font-size:22px; line-height:1.42; color:var(--ink); }
+
+.config{
+  background:var(--ink); border-radius:8px; padding:24px 26px; font-family:var(--mono); font-size:13.5px;
+  box-shadow:0 24px 50px -24px rgba(15,18,25,0.35);
+}
+.config-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+.config-name{ color:rgba(237,238,242,0.4); font-size:11.5px; }
+.config-row{ padding:9px 0; border-bottom:1px solid var(--line-dark); display:flex; gap:8px; flex-wrap:wrap; }
+.config-row:last-child{ border-bottom:none; }
+.config-key{ color:var(--teal-soft); }
+.config-val{ color:var(--gold-soft); }
+.config-punc{ color:rgba(237,238,242,0.3); }
+
+/* ============ EXPERIENCE — GIT LOG ============ */
+.gitlog{ position:relative; padding-left:34px; }
+.gitlog::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line-dark); }
+.commit{ position:relative; padding-bottom:44px; }
+.commit:last-child{ padding-bottom:0; }
+.commit-dot{
+  position:absolute; left:-34px; top:4px; width:11px; height:11px; border-radius:50%;
+  background:var(--ink); border:2px solid var(--gold-soft);
+}
+.commit.head .commit-dot{ background:var(--gold-soft); box-shadow:0 0 0 4px rgba(227,181,101,0.16); }
+.commit-meta{ display:flex; align-items:center; gap:10px; margin-bottom:10px; flex-wrap:wrap; }
+.commit-hash{ font-family:var(--mono); font-size:12.5px; color:var(--gold-soft); }
+.commit-tag{
+  font-family:var(--mono); font-size:10.5px; color:var(--teal-soft);
+  background:rgba(95,174,154,0.14); border:1px solid rgba(95,174,154,0.35);
+  padding:2px 9px; border-radius:20px;
+}
+.commit-date{ font-family:var(--mono); font-size:11.5px; color:rgba(237,238,242,0.38); }
+.commit h3{ font-family:var(--sans); font-weight:600; font-size:18.5px; color:var(--paper); margin-bottom:4px; }
+.commit .co{ font-size:13.5px; color:rgba(237,238,242,0.5); display:block; margin-bottom:10px; }
+.commit p{ font-size:14.5px; color:rgba(237,238,242,0.68); max-width:540px; line-height:1.65; }
+
+/* ============ PROJECTS ============ */
+.repos{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+.repo-card{
+  background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:28px 26px;
+  transition:transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.repo-card:hover{ transform:translateY(-5px); border-color:var(--gold); box-shadow:0 20px 40px -22px rgba(20,23,31,0.2); }
+.repo-lang{ display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:11.5px; color:var(--dim); margin-bottom:18px; }
+.lang-dot{ width:9px; height:9px; border-radius:50%; }
+.repo-card h3{ font-family:var(--sans); font-weight:700; font-size:18px; color:var(--ink); margin-bottom:8px; letter-spacing:-0.01em; }
+.repo-period{ font-family:var(--mono); font-size:11.5px; color:var(--dim); display:block; margin-bottom:14px; }
+.repo-card p{ font-size:14px; color:var(--dim); line-height:1.65; margin-bottom:18px; }
+.repo-topics{ display:flex; flex-wrap:wrap; gap:7px; margin-bottom:18px; }
+.topic{ font-family:var(--mono); font-size:10.5px; color:var(--teal); background:rgba(47,110,95,0.1); padding:3px 9px; border-radius:20px; }
+.repo-links{ display:flex; gap:16px; font-family:var(--mono); font-size:12px; padding-top:16px; border-top:1px solid var(--line); }
+.repo-links a{ color:var(--gold); }
+.repo-links a:hover{ color:var(--ink); }
+
+/* ============ SKILLS ============ */
+.skills-layout{ display:grid; grid-template-columns:0.62fr 1.38fr; gap:56px; align-items:start; }
+.skills-note{
+  font-family:var(--serif); font-style:italic; font-size:21px; line-height:1.5; color:var(--ink);
+  border-left:2px solid var(--gold); padding-left:26px;
+}
+.skills-note span{ display:block; font-family:var(--mono); font-style:normal; font-size:12px; color:var(--dim); margin-top:16px; }
+
+.code-panel{ background:var(--ink); border-radius:8px; overflow:hidden; box-shadow:0 30px 60px -28px rgba(15,18,25,0.35); }
+.code-head{ display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid var(--line-dark); }
+.code-title{ font-family:var(--mono); font-size:11.5px; color:rgba(237,238,242,0.4); }
+.code-body{ display:grid; grid-template-columns:38px 1fr; font-family:var(--mono); font-size:13.5px; line-height:1.95; padding:20px 0; }
+.code-nums{ text-align:right; padding-right:14px; color:rgba(237,238,242,0.22); user-select:none; }
+.code-nums div{ height:1.95em; }
+.code-lines{ padding-right:20px; overflow-x:auto; }
+.code-lines div{ white-space:pre; height:1.95em; }
+.c-cmt{ color:rgba(237,238,242,0.34); font-style:italic; }
+.c-punc{ color:rgba(237,238,242,0.4); }
+.c-key{ color:var(--teal-soft); }
+.c-str{ color:var(--gold-soft); }
+
+/* ============ EDUCATION ============ */
+.edu-list{ border-top:1px solid var(--line); }
+.edu-row{ display:grid; grid-template-columns:130px 1fr auto; gap:22px; align-items:baseline; padding:24px 0; border-bottom:1px solid var(--line); }
+.edu-row .edu-years{ font-family:var(--mono); font-size:12.5px; color:var(--gold); }
+.edu-row h3{ font-family:var(--sans); font-size:17.5px; font-weight:600; color:var(--ink); }
+.edu-row .edu-school{ color:var(--dim); font-size:13.5px; margin-top:3px; }
+.edu-row .edu-tag{ font-family:var(--mono); font-size:11px; color:var(--dim); text-align:right; white-space:nowrap; }
+
+/* ============ CONTACT ============ */
+.contact-grid{ display:grid; grid-template-columns:0.95fr 1.05fr; gap:64px; }
+.contact-info h2{ font-size:clamp(30px,3.8vw,44px); color:var(--paper); margin-bottom:22px; }
+.contact-info p{ color:rgba(237,238,242,0.6); font-size:15.5px; max-width:440px; margin-bottom:36px; }
+.contact-channels{ display:flex; flex-direction:column; gap:0; }
+.channel{ display:flex; justify-content:space-between; align-items:center; padding:16px 0; border-bottom:1px solid var(--line-dark); font-family:var(--mono); font-size:13.5px; }
+.channel .label{ color:rgba(237,238,242,0.4); }
+.channel .value{ color:var(--paper); }
+.channel .value:hover{ color:var(--gold-soft); }
+
+.contact-term{ background:var(--ink-card); border-radius:8px; padding:0; overflow:hidden; border:1px solid rgba(255,255,255,0.06); }
+.contact-term .term-head{ background:rgba(0,0,0,0.15); }
+.contact-form{ padding:26px 26px 30px; }
+.form-row{ margin-bottom:20px; }
+.form-row label{ display:block; font-family:var(--mono); font-size:11.5px; color:var(--teal-soft); margin-bottom:8px; }
+.form-row label::before{ content:"$ "; color:rgba(237,238,242,0.3); }
+.form-row input, .form-row textarea{
+  width:100%; background:transparent; border:none; border-bottom:1px solid var(--line-dark);
+  color:var(--paper); font-family:var(--mono); font-size:14.5px; padding:8px 0; resize:none; transition:border-color 0.25s ease;
+}
+.form-row input::placeholder, .form-row textarea::placeholder{ color:rgba(237,238,242,0.25); }
+.form-row input:focus, .form-row textarea:focus{ outline:none; border-bottom-color:var(--gold-soft); }
+.form-submit{
+  width:100%; margin-top:6px; background:var(--gold); color:var(--ink); border:none; font-family:var(--mono);
+  font-size:13px; font-weight:600; letter-spacing:0.02em; padding:14px; border-radius:3px; cursor:pointer; transition:background 0.25s ease;
+}
+.form-submit:hover{ background:var(--gold-soft); }
+.form-status{ font-family:var(--mono); font-size:11.5px; color:var(--teal-soft); margin-top:12px; min-height:14px; }
+
+/* ============ FOOTER ============ */
+footer{ background:var(--ink); border-top:1px solid var(--line-dark); padding:28px 0; }
+.footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+.footer-inner p{ font-family:var(--mono); font-size:12px; color:rgba(237,238,242,0.4); }
+.footer-inner a{ color:rgba(237,238,242,0.6); }
+.footer-inner a:hover{ color:var(--gold-soft); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:980px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .hero-visual{ order:-1; max-width:460px; }
+  .about-grid, .skills-layout, .contact-grid{ grid-template-columns:1fr; }
+  .repos{ grid-template-columns:1fr 1fr; }
+  .edu-row{ grid-template-columns:1fr; gap:5px; }
+  .edu-row .edu-tag{ text-align:left; }
+}
+@media (max-width:760px){
+  .nav-links, .nav-cta{ display:none; }
+  .nav-toggle{ display:flex; }
+  .mobile-menu{
+    position:fixed; top:68px; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line);
+    flex-direction:column; padding:8px var(--gutter) 22px; display:none; gap:2px;
+  }
+  .mobile-menu.open{ display:flex; }
+  .mobile-menu a{ padding:14px 0; border-bottom:1px solid var(--line); font-family:var(--mono); font-size:13.5px; color:var(--ink); }
+  .repos{ grid-template-columns:1fr; }
+  .section-pad{ padding:76px 0; }
+  .hero-stats{ gap:22px; flex-wrap:wrap; }
+  .code-body{ grid-template-columns:26px 1fr; font-size:11.5px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">
+      <span class="dots"><span></span><span></span><span></span></span>
+      <span class="nav-mark">zainab<em>.</em>faraz</span>
+    </a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#about">about.md</a></li>
+        <li><a href="#experience">experience.log</a></li>
+        <li><a href="#projects">projects/</a></li>
+        <li><a href="#skills">skills.json</a></li>
+        <li><a href="#education">education.yml</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="nav-cta">$ contact.sh</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">about.md</a>
+    <a href="#experience">experience.log</a>
+    <a href="#projects">projects/</a>
+    <a href="#skills">skills.json</a>
+    <a href="#education">education.yml</a>
+    <a href="#contact">$ contact.sh</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="hero-kicker"><span class="dot"></span> Open to Summer 2026 internships</div>
+        <h1>Software, built to <em>actually</em> ship.</h1>
+        <p class="hero-role">
+          <strong>Zainab Faraz</strong> — final-year Software Engineering student at Iqra University, Islamabad. Building web apps and small ML systems that hold up outside a demo, alongside a teaching assistantship and a summer internship.
+        </p>
+        <div class="hero-actions">
+          <a href="#experience" class="btn btn-primary">View experience →</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="stat-num">6<span>+</span></div><div class="stat-label">shipped_projects</div></div>
+          <div><div class="stat-num">3.7<span>/4.0</span></div><div class="stat-label">cgpa_iqra_university</div></div>
+          <div><div class="stat-num">1<span>×</span></div><div class="stat-label">swe_internship</div></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="term">
+          <div class="term-head">
+            <span class="dots"><span></span><span></span><span></span></span>
+            <span class="term-title">zsh — ~/zainab</span>
+            <span style="width:44px"></span>
+          </div>
+          <div class="term-body" id="termBody">
+            <div class="term-line"><span class="term-prompt">$</span> whoami</div>
+            <span class="term-out">zainab-faraz</span>
+            <div class="term-line" style="margin-top:8px"><span class="term-prompt">$</span> cat role.txt</div>
+            <span class="term-out">final-year SWE student · teaching assistant</span>
+            <div class="term-line" style="margin-top:8px"><span class="term-prompt">$</span> cat location.txt</div>
+            <span class="term-out">Islamabad, Pakistan</span>
+            <div class="term-line" style="margin-top:8px"><span class="term-prompt">$</span> echo $STATUS</div>
+            <span class="term-out"><span class="term-key">open_to_internships</span> = true<span class="caret"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="section-pad">
+    <div class="wrap reveal">
+      <div class="eyebrow">about.md</div>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>A software engineer who'd rather ship something small and correct than something big and half-working.</p>
+          <p>Final-year Software Engineering student at Iqra University, Islamabad, currently splitting time between coursework, a teaching assistantship, and a handful of applied AI and web projects. Spent a summer at Cognivance Labs building internal tooling for a document-classification pipeline, and has been a teaching assistant for Data Structures &amp; Algorithms since early 2025.</p>
+          <p>Comfortable across the stack — React and TypeScript on the front end, Python and Node on the back, PyTorch when a problem actually needs a model rather than a rule. Co-built the AI FYP Catalog, a planning tool that turns final-year project ideas into full specs and a trackable workspace.</p>
+        </div>
+        <div class="config">
+          <div class="config-head">
+            <span class="dots"><span></span><span></span><span></span></span>
+            <span class="config-name">profile.json</span>
+          </div>
+          <div class="config-row"><span class="config-key">status</span><span class="config-punc">:</span> <span class="config-val">"final-year student, TA"</span></div>
+          <div class="config-row"><span class="config-key">location</span><span class="config-punc">:</span> <span class="config-val">"Islamabad, Pakistan"</span></div>
+          <div class="config-row"><span class="config-key">focus</span><span class="config-punc">:</span> <span class="config-val">"web apps · AI/ML · dev tools"</span></div>
+          <div class="config-row"><span class="config-key">education</span><span class="config-punc">:</span> <span class="config-val">"BS SE — Iqra University"</span></div>
+          <div class="config-row"><span class="config-key">github</span><span class="config-punc">:</span> <a href="https://github.com/zainabfaraz" target="_blank" rel="noopener" class="config-val">github.com/zainabfaraz</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE — GIT LOG ============ -->
+  <section id="experience" class="on-dark section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">experience.log</div>
+        <h2>A running log of what shipped.</h2>
+        <p>Four commits — coursework, an internship, and the project work that didn't stop when class ended.</p>
+      </div>
+
+      <div class="gitlog reveal">
+
+        <div class="commit head">
+          <div class="commit-dot"></div>
+          <div class="commit-meta">
+            <span class="commit-hash">a3f9c21</span>
+            <span class="commit-tag">HEAD → main</span>
+            <span class="commit-date">Jan 2025 — Present</span>
+          </div>
+          <h3>Teaching Assistant — Data Structures &amp; Algorithms</h3>
+          <span class="co">Iqra University · Islamabad, Pakistan</span>
+          <p>Run weekly lab sessions and grade assignments for a 60-student cohort, and hold office hours for algorithm design and complexity questions.</p>
+        </div>
+
+        <div class="commit">
+          <div class="commit-dot"></div>
+          <div class="commit-meta">
+            <span class="commit-hash">7d2e894</span>
+            <span class="commit-date">Jun 2025 — Aug 2025</span>
+          </div>
+          <h3>Software Engineering Intern</h3>
+          <span class="co">Cognivance Labs · Remote, Islamabad</span>
+          <p>Built a review UI for a document-classification pipeline and shipped a batch re-labeling tool that cut manual QA time by roughly a third.</p>
+        </div>
+
+        <div class="commit">
+          <div class="commit-dot"></div>
+          <div class="commit-meta">
+            <span class="commit-hash">f61b30c</span>
+            <span class="commit-date">2024 · 24 hrs</span>
+          </div>
+          <h3>Hackathon — 2nd Place</h3>
+          <span class="co">Iqra CS Society Hack Day · Islamabad, Pakistan</span>
+          <p>Built Campus Lost &amp; Found with a team of three: an image-matching feature suggesting likely matches between found items and open reports.</p>
+        </div>
+
+        <div class="commit">
+          <div class="commit-dot"></div>
+          <div class="commit-meta">
+            <span class="commit-hash">0c88ae2</span>
+            <span class="commit-date">2025 — Present</span>
+          </div>
+          <h3>Co-Collaborator, AI FYP Catalog</h3>
+          <span class="co">Independent Project · Remote</span>
+          <p>Helped design and build a planning tool that turns final-year AI project ideas into full specs, a kanban board, and a trackable workspace.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects" class="section-pad on-dim">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">projects/</div>
+        <h2>Three projects, three different problems.</h2>
+        <p>AI tooling, computer vision, and a full-stack web app — each built as something a real person could actually use, not just a demo.</p>
+      </div>
+
+      <div class="repos reveal">
+        <div class="repo-card">
+          <div class="repo-lang"><span class="lang-dot" style="background:var(--gold)"></span> Python</div>
+          <h3>ai-fyp-catalog</h3>
+          <span class="repo-period">2025 — Present · Co-collaborator</span>
+          <p>A catalog and workspace tool that turns final-year AI project ideas into full specs — stack, roadmap, dataset notes — plus a kanban board to track one all year.</p>
+          <div class="repo-topics"><span class="topic">react</span><span class="topic">node</span><span class="topic">planning-tool</span></div>
+          <div class="repo-links"><a href="#">Live ↗</a><a href="#">Source ↗</a></div>
+        </div>
+
+        <div class="repo-card">
+          <div class="repo-lang"><span class="lang-dot" style="background:var(--teal)"></span> Python · OpenCV</div>
+          <h3>smart-attendance-cv</h3>
+          <span class="repo-period">2025 · Final year project</span>
+          <p>A classroom attendance system using lightweight face-embedding matching, with a review queue for low-confidence matches instead of silently guessing.</p>
+          <div class="repo-topics"><span class="topic">pytorch</span><span class="topic">opencv</span><span class="topic">computer-vision</span></div>
+          <div class="repo-links"><a href="#">Case study ↗</a><a href="#">Source ↗</a></div>
+        </div>
+
+        <div class="repo-card">
+          <div class="repo-lang"><span class="lang-dot" style="background:var(--blue)"></span> TypeScript</div>
+          <h3>campus-lost-and-found</h3>
+          <span class="repo-period">2024 · Hackathon, 2nd place</span>
+          <p>A web app where students post found items and the system suggests likely matches to open lost reports using image similarity — built in 24 hours.</p>
+          <div class="repo-topics"><span class="topic">react</span><span class="topic">hackathon</span><span class="topic">image-matching</span></div>
+          <div class="repo-links"><a href="#">Demo ↗</a><a href="#">Source ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills" class="section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">skills.json</div>
+        <h2>Where the value actually sits.</h2>
+      </div>
+
+      <div class="skills-layout reveal">
+        <p class="skills-note">
+          "Code is only as useful as the person who has to read it next."
+          <span>The stack below shows up in every project — not a generic list.</span>
+        </p>
+
+        <div class="code-panel">
+          <div class="code-head">
+            <span class="dots"><span></span><span></span><span></span></span>
+            <span class="code-title">stack.jsonc</span>
+            <span style="width:44px"></span>
+          </div>
+          <div class="code-body">
+            <div class="code-nums"><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div></div>
+            <div class="code-lines">
+<div><span class="c-punc">{</span></div>
+<div>&nbsp;&nbsp;<span class="c-key">"languages"</span><span class="c-punc">:</span> <span class="c-str">["Python", "JavaScript", "TypeScript", "SQL"]</span><span class="c-punc">,</span></div>
+<div>&nbsp;&nbsp;<span class="c-key">"frameworks"</span><span class="c-punc">:</span> <span class="c-str">["React", "Node.js"]</span><span class="c-punc">,</span></div>
+<div>&nbsp;&nbsp;<span class="c-key">"ai_ml"</span><span class="c-punc">:</span> <span class="c-str">["PyTorch", "scikit-learn", "Pandas", "OpenCV"]</span><span class="c-punc">,</span></div>
+<div>&nbsp;&nbsp;<span class="c-key">"tools"</span><span class="c-punc">:</span> <span class="c-str">["Git", "GitHub", "Docker", "Figma"]</span><span class="c-punc">,</span></div>
+<div>&nbsp;&nbsp;<span class="c-key">"practice"</span><span class="c-punc">:</span> <span class="c-str">["Agile / Scrum", "Mentoring &amp; TA work"]</span><span class="c-punc">,</span></div>
+<div>&nbsp;&nbsp;<span class="c-cmt">// still learning, always</span></div>
+<div><span class="c-punc">}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section id="education" class="section-pad on-dim">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">education.yml</div>
+        <h2>The record, in order.</h2>
+      </div>
+
+      <div class="edu-list reveal">
+        <div class="edu-row">
+          <div class="edu-years">2022 — 2026</div>
+          <div><h3>BS Software Engineering</h3><div class="edu-school">Iqra University, Islamabad</div></div>
+          <div class="edu-tag">Final Year · CGPA 3.72/4.0</div>
+        </div>
+        <div class="edu-row">
+          <div class="edu-years">2020 — 2022</div>
+          <div><h3>Intermediate (FSc Pre-Engineering)</h3><div class="edu-school">Punjab Group of Colleges</div></div>
+          <div class="edu-tag">Pre-Engineering</div>
+        </div>
+        <div class="edu-row">
+          <div class="edu-years">2018 — 2020</div>
+          <div><h3>Matriculation</h3><div class="edu-school">Islamabad Model College</div></div>
+          <div class="edu-tag">Computer Science</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="on-dark section-pad">
+    <div class="wrap contact-grid">
+      <div class="contact-info reveal">
+        <div class="eyebrow">contact.sh</div>
+        <h2>Let's build something.</h2>
+        <p>Based in Islamabad, Pakistan. Open to internships, junior software roles, and interesting collaborations.</p>
+        <div class="contact-channels">
+          <div class="channel"><span class="label">phone</span><a class="value" href="tel:+923001234567">+92 300 1234567</a></div>
+          <div class="channel"><span class="label">email</span><a class="value" href="mailto:hello@zainabfaraz.dev">hello@zainabfaraz.dev</a></div>
+          <div class="channel"><span class="label">linkedin</span><a class="value" href="https://linkedin.com/in/zainab-faraz" target="_blank" rel="noopener">linkedin.com/in/zainab-faraz</a></div>
+          <div class="channel"><span class="label">github</span><a class="value" href="https://github.com/zainabfaraz" target="_blank" rel="noopener">github.com/zainabfaraz</a></div>
+        </div>
+      </div>
+
+      <div class="contact-term reveal">
+        <div class="term-head">
+          <span class="dots"><span></span><span></span><span></span></span>
+          <span class="term-title">bash — contact.sh</span>
+          <span style="width:44px"></span>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <label for="cf-name">name</label>
+            <input type="text" id="cf-name" name="name" placeholder="your full name" required>
+          </div>
+          <div class="form-row">
+            <label for="cf-email">email</label>
+            <input type="email" id="cf-email" name="email" placeholder="you@company.com" required>
+          </div>
+          <div class="form-row">
+            <label for="cf-message">message</label>
+            <textarea id="cf-message" name="message" rows="4" placeholder="tell me about the role or project..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit">$ ./send.sh</button>
+          <div class="form-status" id="formStatus"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <p>© <span id="year"></span> Zainab Faraz. All rights reserved.</p>
+    <p><a href="mailto:hello@zainabfaraz.dev">hello@zainabfaraz.dev</a></p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('cf-name').value.trim();
+    const email = document.getElementById('cf-email').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
+    if (!name || !email || !message) {
+      status.textContent = '// error: all fields required';
+      return;
+    }
+    const subject = encodeURIComponent('Portfolio enquiry from ' + name);
+    const body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
+    window.location.href = `mailto:hello@zainabfaraz.dev?subject=${subject}&body=${body}`;
+    status.textContent = '// opening mail client...';
+  });
+</script>
+
+</body>
+</html>
